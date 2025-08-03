@@ -37,7 +37,7 @@ class XAIModelProvider(OpenAICompatibleProvider):
             supports_temperature=True,
             temperature_constraint=create_temperature_constraint("range"),
             description="GROK-3 (131K context) - Advanced reasoning model from X.AI, excellent for complex analysis",
-            aliases=["grok", "grok3"],
+            aliases=["grok3"],
         ),
         "grok-3-fast": ModelCapabilities(
             provider=ProviderType.XAI,
@@ -56,6 +56,25 @@ class XAIModelProvider(OpenAICompatibleProvider):
             temperature_constraint=create_temperature_constraint("range"),
             description="GROK-3 Fast (131K context) - Higher performance variant, faster processing but more expensive",
             aliases=["grok3fast", "grokfast", "grok3-fast"],
+        ),
+        "grok-4": ModelCapabilities(
+            provider=ProviderType.XAI,
+            model_name="grok-4",
+            friendly_name="X.AI (Grok 4)",
+            context_window=262_144,  # 262K tokens (highest from GitHub comment)
+            max_output_tokens=32_768,  # From GitHub comment & PR #200
+            supports_extended_thinking=True,  # Both PRs say True
+            supports_system_prompts=True,
+            supports_streaming=True,
+            supports_function_calling=True,
+            supports_json_mode=True,  # All sources agree
+            supports_images=True,  # All sources agree
+            max_image_size_mb=20.0,
+            supports_temperature=True,
+            temperature_constraint=create_temperature_constraint("range"),
+            description="GROK-4 (262K context) - Latest generation model with extended reasoning, vision, and JSON capabilities",
+            aliases=["grok4", "grok-4-latest", "grok"],
+            max_thinking_tokens=32_768,  # From PR #200
         ),
     }
 
